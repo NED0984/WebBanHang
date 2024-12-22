@@ -87,6 +87,11 @@
                                             @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Danh Mục</label>
+                                            @Html.DropDownListFor(x => x.ProductCategoryId,ViewBag.ProductCategory as SelectList,"Chọn danh mục sản phẩm", new { @class = "form-control", @placeholder = "Mô tả" })
+                                            @Html.ValidationMessageFor(x => x.ProductCategoryId, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Chi tiết sản phẩm</label>
                                             @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @placeholder = "Chi tiết" })
                                             @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
@@ -126,7 +131,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "IsHotCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "IsHotCheckbox" })
                                                         <label for="IsHotCheckbox" class="custom-control-label">Hot</label>
                                                     </div>
                                                 </div>
@@ -134,7 +139,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox" })
                                                         <label for="IsFeatureCheckbox" class="custom-control-label">Nổi bật</label>
                                                     </div>
                                                 </div>
@@ -142,7 +147,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "IsSaleCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "IsSaleCheckbox" })
                                                         <label for="IsSaleCheckbox" class="custom-control-label">Khuyến mãi</label>
                                                     </div>
                                                 </div>
@@ -250,24 +255,27 @@
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal">
                                             <div class="form-group row">
-                                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                                <label for="inputName" class="col-sm-2 col-form-label">SEO Title</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        @Html.TextBoxFor(x => x.SeoTitle, new { @class = "form-control", @placeholder = "SEO Title" })
+                                                        @Html.ValidationMessageFor(x => x.SeoTitle, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <label for="inputEmail" class="col-sm-2 col-form-label">Seo Keywords</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                    @Html.TextBoxFor(x => x.SeoKeywords, new { @class = "form-control", @placeholder = "Seo Keywords" })
+                                                    @Html.ValidationMessageFor(x => x.SeoKeywords, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                                <label for="inputName2" class="col-sm-2 col-form-label">Seo Description</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                                    @Html.TextBoxFor(x => x.SeoDescription, new { @class = "form-control", @placeholder = "Seo Description" })
+                                                    @Html.ValidationMessageFor(x => x.SeoDescription, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            @*<div class="form-group row">
                                                 <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
@@ -292,7 +300,7 @@
                                                 <div class="offset-sm-2 col-sm-10">
                                                     <button type="submit" class="btn btn-danger">Submit</button>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                         </form>
                                     </div>
                                     <!-- /.tab-pane -->
