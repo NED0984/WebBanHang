@@ -82,39 +82,39 @@
                                             @Html.ValidationMessageFor(x => x.ProductCode, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Danh Mục</label>
+                                            @Html.DropDownListFor(x => x.ProductCategoryId, ViewBag.ProductCategory as SelectList, "Chọn danh mục sản phẩm", new { @class = "form-control", @placeholder = "Mô tả" })
+                                            @Html.ValidationMessageFor(x => x.ProductCategoryId, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                                             @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Mô tả" })
                                             @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Danh Mục</label>
-                                            @Html.DropDownListFor(x => x.ProductCategoryId,ViewBag.ProductCategory as SelectList,"Chọn danh mục sản phẩm", new { @class = "form-control", @placeholder = "Mô tả" })
-                                            @Html.ValidationMessageFor(x => x.ProductCategoryId, null, new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Chi tiết sản phẩm</label>
-                                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @placeholder = "Chi tiết" })
+                                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control",@id = "txtDetail" })
                                             @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Số lượng</label>
-                                                    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @placeholder = "Số lượng" })
+                                                    @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @Value = "1" })
                                                     @Html.ValidationMessageFor(x => x.Quantity, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá</label>
-                                                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @placeholder = "Giá" })
+                                                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @Value = "0" })
                                                     @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá khuyến mãi</label>
-                                                    @Html.TextBoxFor(x => x.PriceSale, new { @class = "form-control", @placeholder = "Giá khuyến mãi" })
+                                                    @Html.TextBoxFor(x => x.PriceSale, new { @class = "form-control", @Value = "0" })
                                                     @Html.ValidationMessageFor(x => x.PriceSale, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -170,8 +170,8 @@
                                                             <th class="text-center">Thao tác</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
+                                                    <tbody id="tbHtml">
+                                                        @*<tr>
                                                             <td class="text-center">1</td>
                                                             <td class="text-center"><img width="80" src="~/Uploads/images/447634702_984217160372289_8445197736034454702_n.jpg" /></td>
                                                             <td class="text-center"><input type="radio" name="rDefault" /></td>
@@ -182,9 +182,10 @@
                                                             <td class="text-center"><img width="80" src="~/Uploads/images/447634702_984217160372289_8445197736034454702_n.jpg" /></td>
                                                             <td class="text-center"><input type="radio" name="rDefault" /></td>
                                                             <td class="text-center"><a href="#" class="btn btn-sm btn-danger">Xóa</a></td>
-                                                        </tr>
+                                                        </tr>*@
                                                     </tbody>
                                                 </table>
+                                                <input type="hidden" id="tCurrentId" value="0"/>
                                             </div>
                                         </div>
                                     </div>
@@ -266,6 +267,20 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+
+            // Format number with thousands separator
+            function formatNumber(n) {
+                return n.replace(/\D/g, "") // Remove non-numeric characters
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Add dots
+            }
+
+            // Add event listener to price input fields
+            $('input[name="Price"], input[name="PriceSale"]').on('input', function (e) {
+                var input = $(this);
+                var value = input.val();
+                input.val(formatNumber(value));
+            });
+
             // Gán sự kiện khi nhấn vào nút "Tải ảnh lên"
             $("#btnUploadImage").click(function () {
                 var finder = new CKFinder(); // Khởi tạo CKFinder
@@ -280,7 +295,21 @@
             $("#txtDetail").click(function () {
                 CKEDITOR.replace('txtDetail');
             });
+
+            $('body').on('click', '.btnXoaAnh', function () {
+                var conf = confirm('Bạn có muốn xoá ảnh này không?');
+                if (conf === true) {
+                    var _id = $(this).data('id');
+                    $('#trow_' + _id).fadeTo('fast', 0, function () {
+                        $(this).slideUp('fast', function () { $(this).remove(); });
+                    });
+                    var temp = $("#tCurrentId").val();
+                    var currentId = parseInt(temp) - 1;
+                    $("#tCurrentId").val(currentId);
+                }
+            });           
         });
+
         function BrowseServer(field) {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
@@ -289,8 +318,29 @@
             finder.popup();
         }
         function addImageProduct(url) {
-            console.log(url);
-        }
+            var temp = $("#tCurrentId").val();
+            var currentId = parseInt(temp) + 1;
+            var str = "";
+            if (currentId == 1) {
+                str += `<tr id="trow_${currentId}">
+                       <td class="text-center">${currentId}</td>
+                       <td class="text-center"><img width="80" src="${url}" /></td>
+                       <td class="text-center"><input type="radio" value="${currentId}" name="rDefault" checked="checked"/></td>
+                       <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
+                       </tr >`;
+            }
+            else {
+                str += `<tr id="trow_${currentId}">
+                       <td class="text-center">${currentId}</td>
+                       <td class="text-center"><img width="80" src="${url}" /></td>
+                       <td class="text-center"><input type="radio" value="${currentId}" name="rDefault" /></td>
+                       <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
+                       </tr >`;
+            }
+            $('#tbHtml').append(str);
+            $("#tCurrentId").val(currentId);
+            }
+
     </script>
 }
 
