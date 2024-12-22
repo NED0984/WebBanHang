@@ -40,6 +40,12 @@ namespace WebBanHang.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Edit(int id)
+        {
+            var item = db.ProductCategories.Find(id);
+            return View(item);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductCategory model)
@@ -50,11 +56,11 @@ namespace WebBanHang.Areas.Admin.Controllers
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
                 db.Entry(model).Property(x => x.Title).IsModified = true;
+                db.Entry(model).Property(x => x.Description).IsModified = true;
                 db.Entry(model).Property(x => x.Alias).IsModified = true;
                 db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
                 db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
                 db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
-                db.Entry(model).Property(x => x.Position).IsModified = true;
                 db.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
                 db.Entry(model).Property(x => x.ModifiedBy).IsModified = true;
                 db.SaveChanges();
