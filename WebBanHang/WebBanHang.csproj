@@ -48,7 +48,7 @@
   <ItemGroup>
     <Reference Include="CKFinder, Version=2.4.0.2631, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ckfinder\bin\Release\CKFinder.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -3155,6 +3155,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\images\447634702_984217160372289_8445197736034454702_n.jpg" />
+    <Content Include="Uploads\images\valorant-cool.jpg" />
+    <Content Include="Uploads\_thumbs\Images\447634702_984217160372289_8445197736034454702_n.jpg" />
+    <Content Include="Uploads\_thumbs\Images\valorant-cool.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3194,6 +3198,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Uploads\files\" />
+    <Folder Include="Uploads\flash\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

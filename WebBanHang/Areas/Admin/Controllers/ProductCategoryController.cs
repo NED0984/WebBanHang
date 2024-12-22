@@ -54,7 +54,6 @@ namespace WebBanHang.Areas.Admin.Controllers
                 db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
                 db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
                 db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
-                db.Entry(model).Property(x => x.Position).IsModified = true;
                 db.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
                 db.Entry(model).Property(x => x.ModifiedBy).IsModified = true;
                 db.SaveChanges();
