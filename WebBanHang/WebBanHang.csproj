@@ -210,6 +210,10 @@
     <Compile Include="Migrations\202412221445405_UpdateDatabase.Designer.cs">
       <DependentUpon>202412221445405_UpdateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412230858190_Update1206.cs" />
+    <Compile Include="Migrations\202412230858190_Update1206.Designer.cs">
+      <DependentUpon>202412230858190_Update1206.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -3148,6 +3152,7 @@
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -3247,6 +3252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412221445405_UpdateDatabase.resx">
       <DependentUpon>202412221445405_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412230858190_Update1206.resx">
+      <DependentUpon>202412230858190_Update1206.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
