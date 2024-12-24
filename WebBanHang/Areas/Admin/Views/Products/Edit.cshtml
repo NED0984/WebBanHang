@@ -109,14 +109,16 @@
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá</label>
-                                                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                                                    <input type="text" name="demoPrice" value="0" id="demoPrice" class="form-control auto" data-a-dec="," data-a-sep=".">
+                                                    @Html.HiddenFor(x => x.Price, new { @class = "", @Value = "0" })
                                                     @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá khuyến mãi</label>
-                                                    @Html.TextBoxFor(x => x.PriceSale, new { @class = "form-control" })
+                                                    <input type="text" name="demoPriceSale" value="0" id="demoPriceSale" class="form-control auto" data-a-dec="," data-a-sep=".">
+                                                    @Html.HiddenFor(x => x.PriceSale, new { @class = "", @Value = "0" })
                                                     @Html.ValidationMessageFor(x => x.PriceSale, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -239,17 +241,16 @@
     <script>
         $(document).ready(function () {
 
-            // Format number with thousands separator
-            function formatNumber(n) {
-                return n.replace(/\D/g, "") // Remove non-numeric characters
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Add dots
-            }
-
-            // Add event listener to price input fields
-            $('input[name="Price"], input[name="PriceSale"]').on('input', function (e) {
-                var input = $(this);
-                var value = input.val();
-                input.val(formatNumber(value));
+            $('.auto').autoNumeric('init');
+            $('#demoPrice').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoPrice').autoNumeric('get');
+                $('#Price').val(demoGet);
+                $('#Price').autoNumeric('set', demoGet);
+            });
+            $('#demoPriceSale').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoPriceSale').autoNumeric('get');
+                $('#PriceSale').val(demoGet);
+                $('#PriceSale').autoNumeric('set', demoGet);
             });
 
             // Gán sự kiện khi nhấn vào nút "Tải ảnh lên"
