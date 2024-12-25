@@ -77,6 +77,7 @@
                         var i = 1;
                         foreach (var item in Model)
                         {
+                            var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td>@i</td>
                                 <td><img class="imgproduct" data-id="@item.Id" src="@item.ProductImage.FirstOrDefault(x=>x.IsDefault).Image" width="75"</td>
@@ -85,6 +86,9 @@
                                 <td>@item.Quantity</td>
                                 <td>@item.Price</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
+                                </td>
                                 <td>
                                     <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
@@ -157,6 +161,27 @@
                         }
                     });
                 }
+            });
+
+            $('body').on('click', '.btnActive', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                    $.ajax({
+                        url: '/admin/Products/IsActive',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            debugger;
+                            if (rs.success) {
+                                if (rs.isAcive) {
+                                    btn.html("<i class='fa fa-check text-success'></i>");
+                                } else {
+                                    btn.html("<i class='fas fa-times text-danger'></i>");
+                                }
+                            }
+                        }
+                    });
             });
         });
     </script>
