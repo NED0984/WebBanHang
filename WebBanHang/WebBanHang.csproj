@@ -185,10 +185,12 @@
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,9 +222,9 @@
     <Compile Include="Migrations\202412240427024_Update2412.Designer.cs">
       <DependentUpon>202412240427024_Update2412.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412251259007_Update2512.cs" />
-    <Compile Include="Migrations\202412251259007_Update2512.Designer.cs">
-      <DependentUpon>202412251259007_Update2512.cs</DependentUpon>
+    <Compile Include="Migrations\202412260531334_Update2512.cs" />
+    <Compile Include="Migrations\202412260531334_Update2512.Designer.cs">
+      <DependentUpon>202412260531334_Update2512.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3108,6 +3110,7 @@
     <Content Include="Content\Clients\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\Clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\Clients\plugins\uplot\uPlot.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -3268,6 +3271,7 @@
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -3312,6 +3316,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Menu\_MenuTop.cshtml" />
+    <Content Include="Views\Menu\_MenuProductCategory.cshtml" />
+    <Content Include="Views\Menu\_MenuArrivals.cshtml" />
+    <Content Include="Views\Products\Partial_ItemsByCateId.cshtml" />
+    <Content Include="Views\Products\Partial_ProductSales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3369,8 +3377,8 @@
     <EmbeddedResource Include="Migrations\202412240427024_Update2412.resx">
       <DependentUpon>202412240427024_Update2412.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412251259007_Update2512.resx">
-      <DependentUpon>202412251259007_Update2512.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202412260531334_Update2512.resx">
+      <DependentUpon>202412260531334_Update2512.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
