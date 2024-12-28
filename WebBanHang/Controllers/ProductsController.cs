@@ -28,6 +28,12 @@ namespace WebBanHang.Controllers
             {
                 items = items.Where(x => x.ProductCategoryId == id).ToList();
             }
+            var cate = db.ProductCategories.Find(id);
+            if (cate != null) 
+            {
+                ViewBag.CateName = cate.Title;
+            }
+            ViewBag.CateId = id;
             return View(items);
         }
 
