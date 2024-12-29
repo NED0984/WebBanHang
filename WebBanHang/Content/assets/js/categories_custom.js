@@ -365,8 +365,8 @@ jQuery(document).ready(function($)
 		            filter: function()
 		            {
 		            	var priceRange = $('#amount').val();
-			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('Ð', ''));
-			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('Ð', ''));
+			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('VND', ''));
+			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('VND', ''));
 						var itemPrice = $(this).find('.in_product_price').clone().children().remove().end().text();
 
 			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
@@ -403,7 +403,7 @@ jQuery(document).ready(function($)
 			}
 		});
 			
-		$("#amount").val("Ð" + $("#slider-range").slider("values", 0) + " - Ð" + $( "#slider-range" ).slider( "values", 1 ) );
+		$("#amount").val("VND " + $("#slider-range").slider("values", 0) + " - VND " + $( "#slider-range" ).slider( "values", 1 ) );
     }
 
     /* 

@@ -66,6 +66,7 @@ namespace WebBanHang.Models
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
+        public string Alias { get; set; }
         public string CategoryName { get; set; }
         public string ProductImg { get; set; }
         public int Quantity { get; set; }
