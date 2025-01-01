@@ -54,7 +54,7 @@
                                 <td>@item.CustomerName</td>
                                 <td>@item.Phone</td>
                                 <td>@WebBanHang.Common.Common.FormatNumber(item.TotalAmount, 0)</td>
-                                @*<td>@(item.TypePayment==1?"Chờ thanh toán":"Đã thanh toán")</td>*@
+                                <td>@(item.TypePayment==1?"Chờ thanh toán":"Đã thanh toán")</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <a href="/admin/order/view/@item.Id" class="btn btn-sm btn-success">Xem</a>
@@ -100,7 +100,6 @@
                         <option value="2">Đã thanh toán</option>
                     </select>
                 </div>
-                <p>One fine body&hellip;</p>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>

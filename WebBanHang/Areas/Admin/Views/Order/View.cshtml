@@ -63,24 +63,18 @@
                         <p class="form-control">@Model.CreatedDate.ToString("dd/MM/yyyy")</p>
                     </div>
                 </div>
-                @*<div class="col-md-6">
-                <div class="form-group">
-                    <label>Email</label>
-                    <p class="form-control">@Model.Email</p>
-                </div>
-            </div>*@
             </div>
-            @*<div class="row">
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Trạng thái</label>
-                        <p class="form-control">@Model.TypePayment ==1 ? "Chưa thanh toán":"Đã thanh toán"</p>
+                        <p class="form-control">@(Model.TypePayment ==1 ? "Chưa thanh toán":"Đã thanh toán")</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     
                 </div>
-            </div>*@
+            </div>
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách sản phẩm</h2>
@@ -92,7 +86,6 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            Footer
         </div>
         <!-- /.card-footer-->
     </div>

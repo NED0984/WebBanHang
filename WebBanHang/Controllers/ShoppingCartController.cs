@@ -5,32 +5,43 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using WebBanHang.Models.EF;
 
 namespace WebBanHang.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            
-            return View();
-        }
-
-        public ActionResult CheckOut()
-        {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 ViewBag.CheckCart = cart;
             }
             return View();
         }
 
+        public ActionResult CheckOut()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null && cart.Items.Any())
+            {
+                ViewBag.CheckCart = cart;
+            }
+            return View();
+        }
+
+        public  ActionResult CheckOutSuccess()
+        {
+            return View();
+        }
+
         public ActionResult Partial_Item_ThanhToan()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -40,7 +51,7 @@ namespace WebBanHang.Controllers
         public ActionResult Partial_Item_Cart()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -55,6 +66,46 @@ namespace WebBanHang.Controllers
                 return Json(new {Count = cart.Items.Count },JsonRequestBehavior.AllowGet);
             }
             return Json(new {Count = 0}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Partial_CheckOut()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(OrderViewModel req)
+        {
+            var code= new { Success = false, code = -1 };
+            if (ModelState.IsValid) 
+            {
+                ShoppingCart cart = (ShoppingCart)Session["Cart"];
+                if (cart != null) 
+                {
+                    Order order = new Order();
+                    order.CustomerName = req.CustomerName;
+                    order.Phone = req.Phone;
+                    order.Address = req.Address;
+                    cart.Items.ForEach(x=>order.OrderDetails.Add(new OrderDetail { 
+                        ProductId = x.ProductId, 
+                        Quantity = x.Quantity, 
+                        Price = x.Price 
+                    }));
+                    order.TotalAmount = cart.Items.Sum(x=>(x.Price*x.Quantity));
+                    order.TypePayment = req.TypePayment;
+                    order.CreatedDate = DateTime.Now;
+                    order.ModifiedDate = DateTime.Now;
+                    order.CreatedBy = req.Phone;
+                    Random rd = new Random();
+                    order.Code = "DH" + rd.Next(0,9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+                    cart.ClearCart();
+                    return RedirectToAction("CheckOutSuccess");
+                }
+            }
+            return Json(code);
         }
 
         [HttpPost]
