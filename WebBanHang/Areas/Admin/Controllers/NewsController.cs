@@ -8,6 +8,7 @@ using WebBanHang.Models.EF;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class NewsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
