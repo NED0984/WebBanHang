@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using WebBanHang;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
