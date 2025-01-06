@@ -12,7 +12,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin" class="nav-link">Home</a>
+            <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin/category" class="nav-link">@ViewBag.Title</a>
@@ -88,7 +88,7 @@
                                 <td>@item.Title</td>
                                 <td>@item.ProductCategory.Title</td>
                                 <td>@item.Quantity</td>
-                                <td>@item.Price</td>
+                                <td>@WebBanHang.Common.Common.FormatNumber(item.Price, 0)đ</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 <td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnHome">@Html.Raw(strCheckHome)</a>

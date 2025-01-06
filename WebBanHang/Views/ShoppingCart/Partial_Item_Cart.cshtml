@@ -29,9 +29,9 @@
                     </a>
                 </td>
                 <td>@item.CategoryName</td>
-                <td>@Common.FormatNumber(item.Price, 0)</td>
+                <td>@Common.FormatNumber(item.Price, 0)đ</td>
                 <td><input type="number" class="form-control" id="Quantity_@item.ProductId" value="@item.Quantity" /></td>
-                <th>@Common.FormatNumber(item.TotalPrice, 2)</th>
+                <td>@Common.FormatNumber(item.TotalPrice, 2)đ</td>
                 <td>
                     <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xoá</a>
                     <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
